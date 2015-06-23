@@ -1,0 +1,19 @@
+{
+  "name"         : "mortgage-portal",
+  "version"      : "0.0.1",
+  "description"  : "Mortgage Portal, a sample application for ENI Editions Docker book",
+  "main"         : "index.js",
+  "author"       : "JP Gouigoux <jp.gouigoux@free.fr>",
+  "license"      : "MIT",
+  "repository"   : {
+    "type" : "git",
+    "url" : "git://github.com/EditionsENI/mortgage.git"
+  },
+  "dependencies" : {
+    "express"         : "~4.7.2",
+    "mongoose"        : "~3.8.13",
+    "morgan"          : "~1.1.1",
+    "body-parser"     : "~1.4.3",
+    "method-override" : "~2.1.1"
+  }
+}

@@ -1,0 +1,35 @@
+﻿{
+  "version": "1.0.0-*",
+  "description": "",
+  "authors": [ "" ],
+  "tags": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+
+  "dependencies": {
+    "Microsoft.Framework.ConfigurationModel": "1.0.0-beta4",
+    "Microsoft.AspNet.WebApi.Client": "5.2.3"
+  },
+
+  "commands": {
+    "Calculator": "Calculator"
+  },
+
+  "frameworks": {
+    "dnx451": {
+      "dependencies": {
+        "Microsoft.Net.Http": "2.2.29"
+      }
+    },
+    "dnxcore50": {
+      "dependencies": {
+        "System.Console": "4.0.0-beta-22816",
+        "System.Collections": "4.0.10-beta-22816",
+        "System.Linq": "4.0.0-beta-22816",
+        "System.Threading": "4.0.10-beta-22816",
+        "Microsoft.CSharp": "4.0.0-beta-22816",
+        "System.Net.Http": "4.0.0-beta-22816"
+      }
+    }
+  }
+}

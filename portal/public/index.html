@@ -1,0 +1,49 @@
+<!doctype html>
+<html ng-app="mortgageSampleApp">
+
+<head>
+    <title>Mortgage sample application</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+    <script src="./app.js"></script>
+</head>
+
+<body ng-controller="mainController">
+    <div class="container">
+<!--    
+        <div class="checkbox" ng-repeat="mortgage in mortgages">
+            <label>
+                <input type="checkbox"> {{ mortgage.text }}
+            </label>
+        </div>
+-->
+        <div id="creating" class="col-sm-5">
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Reference" ng-model="createForm.text" required>Reference</input>
+                    <input type="number" class="form-control input-lg" placeholder="Month index (1 is Jan 2000)" ng-model="createForm.start" required>Start month</input>
+                    <input type="number" class="form-control input-lg" placeholder="Number of months" ng-model="createForm.duration" required>Repayment length
+                    </input>
+                    <input type="text" class="form-control input-lg" placeholder="Decimal value (ex: 12056.50)" ng-model="createForm.amount" required>Amount borrowed</input>
+                    <input type="checkbox" class="form-control input-lg" ng-model="createForm.isRateFixed" required>Fixed rate</input>
+                    <input type="text" class="form-control input-lg" placeholder="Decimal value (ex: 0.035)" ng-model="createForm.rate" required>Rate if fixed</input>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="createMortgage()">Create</button>
+            </form>
+        </div>
+        <div id="reporting" class="col-sm-5">
+            <form>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" placeholder="Reference" ng-model="reportForm.reference" required>Reference</input>
+                    <input type="text" class="form-control input-lg" placeholder="Decimal value (ex: 50000)" ng-model="reportForm.repaid" required>Amount repaid</input>
+                    <input type="text" class="form-control input-lg" placeholder="Decimal value (ex: 0.025)" ng-model="reportForm.newRate" required>Replacement fixed rate</input>
+                    <input type="text" class="form-control input-lg" placeholder="Email address" ng-model="reportForm.email" required>Report receiver's address</input>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg" ng-click="sendReport()">Send report</button>
+	        <label>{{feedbackMessage}}</label>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "nodebase",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Empty application, used to create a Docker base image for Node",
+  "author": "JP Gouigoux <jp.gouigoux@free.fr>",
+  "dependencies": {
+    "express": "~4.7.2",
+    "mongoose": "~3.6.2"
+  }
+}

@@ -1,0 +1,29 @@
+db:
+  image: "mongo:3.0.3"
+optim:
+  build: optimizer
+calc:
+  build: calculator
+  links:
+    - "optim:optimizer"
+  environment:
+    - "URLOptimizerJobs=http://optimizer:5004/api/Jobs/"
+report:
+  build: reporting
+  links:
+    - "db:mongo"
+    - "optim:optimizer"
+notif:
+  build: notifier
+  links:
+    - "report:reporting"
+  environment:
+    - SMTP_AUTH_LOGIN
+    - SMTP_AUTH_PASSWORD
+app:
+  build: portal
+  links:
+    - "db:mongo"
+    - "notif:notifier"
+  ports:
+    - "8080:8080"
