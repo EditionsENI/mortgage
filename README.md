@@ -1,5 +1,5 @@
 # mortgage
-This same application has been created as an example for Editions ENI's book on Docker, by Jean-Philippe Gouigoux (ISBN : ).
+This same application has been created as an example for Editions ENI's book on Docker, by Jean-Philippe Gouigoux (ISBN : 978-2-7460-9752-0).
 
 ## Business domain 
 The application simulates a very simple mortgage repayment optimization tool. After creating a mortgage, which will be stored in a NoSQL database, the GUI lets the user requests the analysis of the best repayment month, depending on the capital she can reimburse and the new interest rate. A PDF document is then sent to her with the corresponding date.
