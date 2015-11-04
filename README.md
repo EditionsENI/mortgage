@@ -27,6 +27,12 @@ Easiest way to run the application is to use the docker-compose.yml file that is
 
     git clone https://github.com/EditionsENI/mortgage.git
     cd mortgage
+    cd aspnetbase
+    docker build -t aspnetbase:beta4 .
+    cd ..
+    cd nodebase
+    docker build -t nodebase .
+    cd ..
     docker-compose build
     export SMTP_AUTH_LOGIN=your.identifier@gmail.com
     export SMTP_AUTH_PASSWORD=your.gmail.password
