@@ -28,12 +28,12 @@ mongoose.connect(database.url, function(err) {
 								console.log('successful connection (third try... almost out)');
 							}
 						});
-					},5000);
+					},10000);
 				} else {
 					console.log('successful connection (second try)');
 				}
 			});
-		},1000);
+		},5000);
 	} else {
 		console.log('successful connection (first try)');
 	}
