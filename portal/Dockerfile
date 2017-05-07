@@ -1,4 +1,4 @@
-FROM nodebase
+FROM node:0.12.4
 
 ADD package.json /tmp/package.json
 ADD README.md /tmp/README.md
