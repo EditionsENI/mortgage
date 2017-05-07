@@ -1,29 +1,23 @@
-db:
-  image: "mongo:3.0.3"
-optim:
-  build: optimizer
-calc:
-  build: calculator
-  links:
-    - "optim:optimizer"
-  environment:
-    - "URLOptimizerJobs=http://optimizer:5004/api/Jobs/"
-report:
-  build: reporting
-  links:
-    - "db:mongo"
-    - "optim:optimizer"
-notif:
-  build: notifier
-  links:
-    - "report:reporting"
-  environment:
-    - SMTP_AUTH_LOGIN
-    - SMTP_AUTH_PASSWORD
-app:
-  build: portal
-  links:
-    - "db:mongo"
-    - "notif:notifier"
-  ports:
-    - "8080:8080"
+version: '3'
+services:
+  mongo:
+    image: "mongo:3.2"
+    ports:
+      - "27017:27017"
+  optimizer:
+    image: jpgouigoux/optimizer
+  calc:
+    image: jpgouigoux/calculator
+    environment:
+      - "URLOptimizerJobs=http://optimizer:5004/api/Jobs/"
+  reporting:
+    image: jpgouigoux/reporting
+  notifier:
+    image: jpgouigoux/notifier
+    environment:
+      - SMTP_AUTH_LOGIN=jp.gouigoux@gmail.com
+      - SMTP_AUTH_PASSWORD=${GMAIL_PWD}
+  app:
+    image: jpgouigoux/portal
+    ports:
+      - "8080:8080"
