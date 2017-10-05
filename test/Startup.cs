@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Optimizer
+namespace test
 {
     public class Startup
     {
@@ -35,13 +35,6 @@ namespace Optimizer
             }
 
             app.UseMvc();
-
-//            JobsController.Jobs = new List<Job>
-//            {
-//                new Job { Id = "a", RepaymentAmount = 1000, Done = false, MortgageDefinition = new Mortgage { AmountBorrowed = 1000, FixRate = 0.05M, IsRateFixed = true, RepaymentLenghtInMonths = 240, StartMonth = 3 } },
-//                new Job { Id = "b", RepaymentAmount = 300, Done = false, MortgageDefinition = new Mortgage { AmountBorrowed = 1000, IsRateFixed = false, RepaymentLenghtInMonths = 120, StartMonth = 10 } },
-//            };
-
         }
     }
 }

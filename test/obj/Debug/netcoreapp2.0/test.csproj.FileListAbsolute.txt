@@ -1,0 +1,10 @@
+D:\Git\mortgage\test\bin\Debug\netcoreapp2.0\test.deps.json
+D:\Git\mortgage\test\bin\Debug\netcoreapp2.0\test.runtimeconfig.json
+D:\Git\mortgage\test\bin\Debug\netcoreapp2.0\test.runtimeconfig.dev.json
+D:\Git\mortgage\test\bin\Debug\netcoreapp2.0\test.dll
+D:\Git\mortgage\test\bin\Debug\netcoreapp2.0\test.pdb
+D:\Git\mortgage\test\obj\Debug\netcoreapp2.0\test.csproj.CoreCompileInputs.cache
+D:\Git\mortgage\test\obj\Debug\netcoreapp2.0\test.AssemblyInfoInputs.cache
+D:\Git\mortgage\test\obj\Debug\netcoreapp2.0\test.AssemblyInfo.cs
+D:\Git\mortgage\test\obj\Debug\netcoreapp2.0\test.dll
+D:\Git\mortgage\test\obj\Debug\netcoreapp2.0\test.pdb

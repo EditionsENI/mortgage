@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.Framework.ConfigurationModel;
+//using Microsoft.Framework.ConfigurationModel;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading;
+using System.Runtime.Serialization.Json;
 
 namespace Calculator
 {
@@ -33,10 +34,11 @@ namespace Calculator
 
     public class Program
     {
-        public void Main(string[] args)
+        public static void Main(string[] args)
         {
-            var config = new Configuration().AddEnvironmentVariables();
-            string urlOptimizer = config.Get("URLOptimizerJobs") ?? "http://localhost:5004/api/Jobs/";
+            //var config = new Configuration().AddEnvironmentVariables();
+            //string urlOptimizer = config.Get("URLOptimizerJobs") ?? "http://localhost:5004/api/Jobs/";
+            string urlOptimizer = Environment.ExpandEnvironmentVariables("URLOptimizerJobs") ?? "http://localhost:5004/api/Jobs/";
             Console.WriteLine("Mortgage calculation service listening to {0}", urlOptimizer);
 
             bool WarnNoMoreJobs = true;
@@ -48,6 +50,9 @@ namespace Calculator
                     httpClient.DefaultRequestHeaders.Accept.Clear();
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                     List<Job> jobs = httpClient.GetAsync(urlOptimizer).Result.Content.ReadAsAsync<List<Job>>().Result;
+                    //var serializer = new DataContractJsonSerializer(typeof(List<Job>));
+                    //var flux = httpClient.GetStreamAsync(urlOptimizer).Result;
+                    //List<Job> jobs = serializer.ReadObject(flux) as List<Job>;
 
                     List<Job> remainingJobs = jobs.FindAll(j => !j.Taken);
                     if (remainingJobs.Count == 0)
@@ -71,9 +76,9 @@ namespace Calculator
                     httpClient.PutAsJsonAsync<Job>(urlOptimizer + Taken.Id, Taken).Result.EnsureSuccessStatusCode();
 
                     // The calculation is completely simulated, and does not correspond to any real financial computing
-		    // We thus only wait for a given delay and send a random amount for the total cost
-		    // Should one be interested in the kind of computation that can truly use scaling, one can take a look
-		    // at the use of Genetic Algorithms as shown as in https://github.com/jp-gouigoux/PORCAGEN
+		            // We thus only wait for a given delay and send a random amount for the total cost
+		            // Should one be interested in the kind of computation that can truly use scaling, one can take a look
+		            // at the use of Genetic Algorithms as shown as in https://github.com/jp-gouigoux/PORCAGEN
                     Task.Delay(20).Wait();
                     Taken.Done = true;
                     Taken.TotalMortgageCost = Convert.ToDecimal(engine.Next(1000));
