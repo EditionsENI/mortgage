@@ -1,17 +1,8 @@
-FROM ubuntu:trusty
-MAINTAINER jp.gouigoux@free.fr
-
-RUN apt-get update \
-    && apt-get install -y \
-       python \
-       python-pip \
-       wget \
-    && pip install Flask
-
-RUN apt-get install -y python-reportlab
-
-COPY src/ .
-
+FROM python:3.6
+WORKDIR /usr/src/app
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 EXPOSE 5000
-ENTRYPOINT ["python", "-u"]
-CMD ["webtest.py"]
+COPY webtest.py ./
+# Le paramètre -u était importanet peut-être que la d�oupe ENTRYPOINT vaut le coup d'être rajutée
+CMD ["python", "./webtest.py"]

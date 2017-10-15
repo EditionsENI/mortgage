@@ -1,6 +1,11 @@
-FROM jpgouigoux/aspnet:1.0.0-beta4
-ADD /src /app
+FROM microsoft/dotnet:2.0-sdk AS builder
 WORKDIR /app
-RUN ["dnu", "restore"]
-ENV URLOptimizerJobs=http://optim1:5004/api/Jobs/
-CMD ["dnx", ".", "run"]
+ADD /src/calculator.csproj /app
+RUN dotnet restore
+ADD /src /app
+RUN dotnet publish -o output
+
+FROM microsoft/dotnet:2.0-runtime
+COPY --from=builder /app/output /app
+WORKDIR /app
+ENTRYPOINT ["dotnet", "calculator.dll"]

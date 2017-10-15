@@ -12,12 +12,12 @@ def pdf():
     # PENSER A UTILISER PLUTOT UN FICHIER REQUIREMENTS DANS LE DOCKERFILE, COMME EXPLIQUE SUR docs.docker.com/compose
 
     entetes = {'Content-type': 'application/json', 'Accept': 'text/plain'}
-    callURL = "http://optimizer:5004"
+    callURL = "http://optimizer"
     callURL += "/api/Mortgage/BestRepaymentDate"
     callURL += "?AmountRepaid=" + request.args['amountRepaid']
     callURL += "&ReplacementFixRate=" + request.args['replacementFixRate']
     r = requests.post(callURL, data=request.data, headers=entetes)
-    print "Best repayment date is : " + r.content
+    print("Best repayment date is : " + r.content)
 
     # Generating the report
     import cStringIO

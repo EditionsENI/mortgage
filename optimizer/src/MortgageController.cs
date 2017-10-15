@@ -13,6 +13,11 @@ namespace Optimizer
         [HttpPost("BestRepaymentDate")]
         public DateTime GetBestRepaymentDate(decimal AmountRepaid, decimal ReplacementFixRate, [FromBody] Mortgage m)
         {
+            System.Console.WriteLine("COUCOU - param1 = " + AmountRepaid);
+            System.Console.WriteLine("COUCOU - m.startMonth = " + m.startMonth);
+            System.Console.WriteLine("COUCOU - m.repaymentLengthInMonths = " + m.repaymentLengthInMonths);
+            System.Console.WriteLine("COUCOU - dernier du count = " + GetIndexCurrentMonth(DateTime.Now));
+
             lock (JobsController.Verrou)
             {
                 foreach (int IndexMonth in Enumerable.Range(

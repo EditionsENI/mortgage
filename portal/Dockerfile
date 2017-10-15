@@ -1,12 +1,10 @@
-FROM node:0.12.4
+FROM node:8.7-alpine
 
-ADD package.json /tmp/package.json
-ADD README.md /tmp/README.md
-RUN cd /tmp && npm install
-RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
+ADD package.json .
+RUN npm install
+RUN mkdir -p /opt/app && cp -a /node_modules /opt/app/
 
-WORKDIR /opt/app
-ADD . /opt/app
-
+ADD index.js .
+ADD public/ public/
 EXPOSE 8080
 CMD ["node", "index.js"]

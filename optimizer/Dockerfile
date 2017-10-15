@@ -1,6 +1,11 @@
-FROM jpgouigoux/aspnet:1.0.0-beta4
-ADD /src /app
+FROM microsoft/dotnet:2.0-sdk AS builder
 WORKDIR /app
-RUN ["dnu", "restore"]
-EXPOSE 5004
-ENTRYPOINT sleep 10000000 | dnx . kestrel # https://github.com/docker/compose/issues/1409
+ADD /src/optimizer.csproj /app
+RUN dotnet restore
+ADD /src /app
+RUN dotnet publish -o output
+
+FROM microsoft/aspnetcore:2.0
+COPY --from=builder /app/output /app
+WORKDIR /app
+ENTRYPOINT ["dotnet", "optimizer.dll"]
