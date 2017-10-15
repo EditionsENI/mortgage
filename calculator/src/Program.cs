@@ -44,12 +44,16 @@ namespace Calculator
             bool WarnNoMoreJobs = true;
             while (true)
             {
+                Console.WriteLine("In the loop");
                 try
                 {
                     var httpClient = new HttpClient();
+                    System.Console.WriteLine("httpClient created");
                     httpClient.DefaultRequestHeaders.Accept.Clear();
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                    Console.WriteLine("headers modifies");
                     List<Job> jobs = httpClient.GetAsync(urlOptimizer).Result.Content.ReadAsAsync<List<Job>>().Result;
+                    Console.WriteLine("nombre de jobs recuperes : " + jobs.Count);
                     //var serializer = new DataContractJsonSerializer(typeof(List<Job>));
                     //var flux = httpClient.GetStreamAsync(urlOptimizer).Result;
                     //List<Job> jobs = serializer.ReadObject(flux) as List<Job>;
@@ -85,8 +89,9 @@ namespace Calculator
 
                     httpClient.PutAsJsonAsync<Job>(urlOptimizer + Taken.Id, Taken).Result.EnsureSuccessStatusCode();
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Console.WriteLine(ex.ToString());
                     Task.Delay(1000).Wait();
                 }
             }
