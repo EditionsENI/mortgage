@@ -8,28 +8,19 @@ services:
   calc:
     build: ./calculator
     image: jpgouigoux/calculator
-    links:
-      - optimizer
     environment:
       - "URLOptimizerJobs=http://optimizer/api/Jobs/"
   reporting:
     build: ./reporting
     image: jpgouigoux/reporting
-    links:
-      - mongo
-      - optimizer
   notifier:
     build: ./notifier
     image: jpgouigoux/notifier
-    links:
-      - reporting
     environment:
       - SMTP_AUTH_LOGIN=jp.gouigoux@gmail.com
       - SMTP_AUTH_PASSWORD=${GMAIL_PWD}
   app:
     build: ./portal
     image: jpgouigoux/portal
-    links:
-      - mongo
     ports:
       - "8080:8080"
